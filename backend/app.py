@@ -20,4 +20,4 @@ async def message(question: str, session_id: str):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("app:app", host='localhost', port=8339, reload=True)
+    uvicorn.run("app:app", host='10.128.0.27', port=8339, reload=True)

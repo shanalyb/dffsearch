@@ -90,7 +90,7 @@ class FAQSystem:
 
     def get_retriever(self) -> BaseRetriever:
         vectorstore = Chroma(
-            persist_directory="./chroma_db", 
+            persist_directory="./chromadb.db", 
             embedding_function=self.embeddings
         )
         return vectorstore.as_retriever(search_kwargs=dict(k=4), search_type="mmr")
