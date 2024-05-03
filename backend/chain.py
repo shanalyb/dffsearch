@@ -54,10 +54,6 @@ def format_docs(docs: Sequence[Document]) -> str:
     return "\n".join(formatted_docs)
 
 
-def print_me(input):
-    print("Printing!!!", input)
-    return input
-
 # Reading a prompt for a language model
 prompts_path = os.path.join(os.getcwd(), 'prompts/prompts.yaml')
 with open(prompts_path, "r", encoding='utf-8') as f:
@@ -104,8 +100,7 @@ class FAQSystem:
             if "dff" in info['topic'].lower():
                 return itemgetter("condense_question") | retriever
             else:
-                message = "Давайте поговорим о деле"
-                return message
+                return 'chitchat'
 
         CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(prompts['rephrase_template'])
         condense_question_chain = RunnablePassthrough.assign(
@@ -203,10 +198,15 @@ class FAQSystem:
             | response_synthesizer
         )
 
+        CHITCHAT_PROMPT = PromptTemplate.from_template(prompts['chitchat_template'])
+        chitchat_chain = (
+            CHITCHAT_PROMPT | model_synthesizer | StrOutputParser()
+        )
+
         def route_retriever_output(info):
             retriever_output = info['docs']
             if isinstance(retriever_output, str):
-                return retriever_output
+                return chitchat_chain
             else:
                 return chain
         
