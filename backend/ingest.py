@@ -18,7 +18,7 @@ FOLDER_ID = os.getenv("FOLDER_ID")
 
 
 def get_embeddings_model() -> Embeddings:
-    return YandexGPTEmbeddings(folder_id=FOLDER_ID, api_key=os.getenv("API-KEY"), sleep_interval=0.1)
+    return YandexGPTEmbeddings(folder_id=FOLDER_ID, api_key=os.getenv("API_KEY"), sleep_interval=0.1)
 
 
 def load_dff_docs():
