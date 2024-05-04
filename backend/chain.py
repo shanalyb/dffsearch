@@ -73,7 +73,7 @@ class FAQSystem:
             boto3_session=self.boto3_session,
             table_name="SessionTable", 
             session_id=self.session_id,
-            endpoint_url="http://158.160.119.89:8000/", 
+            endpoint_url="http://127.0.0.1:8000/", 
         )
 
 

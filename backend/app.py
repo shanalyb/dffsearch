@@ -11,10 +11,22 @@ FOLDER_ID = "b1gjg18vo9sd3fk8qmus"
 
 app = FastAPI(title="Messangers App")
 
+@app.get("/stats")
+async def stats(message: str, session_id: str, intent: str, node_name: str):
+    print(message, session_id, intent, node_name)
+    ch_history = ClickHouseChatMessageHistory(
+        host="127.0.0.1",
+        port=8123,
+        table_name='dffserch_history',
+        session_id=session_id,
+    )
+    ch_history.add_user_message(message, intent=intent, node_name=node_name)
+    return 'OK'
+
 @app.get("/message")
 async def message(question: str, session_id: str, intent: str, node_name: str):
     ch_history = ClickHouseChatMessageHistory(
-        host="158.160.119.89",
+        host="127.0.0.1",
         port=8123,
         table_name='dffserch_history',
         session_id=session_id,
@@ -31,4 +43,4 @@ async def message(question: str, session_id: str, intent: str, node_name: str):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("app:app", host='10.128.0.27', port=8339, reload=True)
+    uvicorn.run("app:app", host='127.0.0.1', port=8339, reload=True)
