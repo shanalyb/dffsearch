@@ -21,8 +21,8 @@ services:
     environment:
       DYNAMO_ENDPOINT: "http://dynamodb:8000"
       AWS_REGION: "ru-central1"
-      AWS_ACCESS_KEY_ID: foo
-      AWS_SECRET_ACCESS_KEY: bar
+      AWS_ACCESS_KEY_ID: ${STATIC_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${STATIC_KEY_SECRET}
     depends_on:
       dynamodb:
         condition: service_healthy
