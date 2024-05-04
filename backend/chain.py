@@ -48,7 +48,7 @@ def format_docs(docs: Sequence[Document]) -> str:
 
 
 # Reading a prompt for a language model
-prompts_path = os.path.join(os.getcwd(), 'prompts/prompts.yaml')
+prompts_path = os.path.join(os.getcwd(), 'backend/prompts/prompts.yaml')
 with open(prompts_path, "r", encoding='utf-8') as f:
     prompts = yaml.safe_load(f)
 
