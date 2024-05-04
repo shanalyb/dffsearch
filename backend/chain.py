@@ -3,10 +3,7 @@ from operator import itemgetter
 from typing import Dict, List, Optional, Sequence, Literal
 
 from langchain_community.embeddings.yandex import YandexGPTEmbeddings
-from langchain_community.chat_models import ChatYandexGPT
-from langchain_community.chat_models import GigaChat
 from langchain_community.llms.yandex import YandexGPT
-from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.documents import Document
 from langchain.prompts import PromptTemplate,ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import (
@@ -15,12 +12,9 @@ from langchain_core.runnables import (
     RunnableBranch,
     Runnable,
 )
-from langchain_core.pydantic_v1 import BaseModel, Field
+from langchain_core.pydantic_v1 import BaseModel
 from langchain_community.vectorstores import Chroma
-from langchain.memory import ConversationBufferWindowMemory
 from langchain_core.output_parsers import StrOutputParser
-from langchain_community.chat_message_histories import ChatMessageHistory
-from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.retrievers import BaseRetriever
 from langchain_core.language_models import LanguageModelLike
@@ -80,7 +74,7 @@ class FAQSystem:
             boto3_session=self.boto3_session,
             table_name="SessionTable", 
             session_id=self.session_id,
-            endpoint_url="http://127.0.0.1:8000/", 
+            endpoint_url="http://158.160.119.89:8000/", 
         )   
 
 
