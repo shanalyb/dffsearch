@@ -26,3 +26,13 @@ services:
     depends_on:
       dynamodb:
         condition: service_healthy
+  
+  clickhouse-db:
+    image: clickhouse/clickhouse-server:22.6.3.35
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    ports:
+      - 18123:18123
+      - 8123:8123

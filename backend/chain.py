@@ -1,3 +1,5 @@
+import os
+import boto3
 import yaml
 from operator import itemgetter
 from typing import Dict, List, Optional, Sequence, Literal
@@ -20,9 +22,6 @@ from langchain_core.retrievers import BaseRetriever
 from langchain_core.language_models import LanguageModelLike
 
 from langchain_community.chat_message_histories import DynamoDBChatMessageHistory
-
-import os
-import boto3
 
 
 class ChatRequest(BaseModel):
@@ -75,7 +74,7 @@ class FAQSystem:
             table_name="SessionTable", 
             session_id=self.session_id,
             endpoint_url="http://158.160.119.89:8000/", 
-        )   
+        )
 
 
     def get_retriever(self) -> BaseRetriever:
